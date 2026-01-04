@@ -1,0 +1,11 @@
+name: This is CI creating for practice
+
+on:
+  push:
+    branches: "*"
+
+jobs:
+  
+  Fist:
+    runs-on: ubuntu-latest
+    runs: echo "Hello World"
