@@ -1,0 +1,42 @@
+pipeline{
+    agent any
+    stages{
+        stage('Build') {
+            steps {
+                echo "Building branch: ${env.BRANCH_NAME}"
+            }
+        }
+        stage('install-nginx'){
+            steps{
+                sh "sudo apt install nginx git -y"
+            }
+        }
+        stage('deploy-prod'){
+            when {
+                branch 'main'
+            }
+            steps{
+                sh "echo 'Deploying code of main branch to Production Environment'"
+                sh "git clone https://github.com/akash911133/MissionJobSwitch.git"
+                sh "cp -r /src/index.html /var/www/html/index.html"
+            }
+        }
+        stage('deploy-feature-branch'){
+            when {
+                not {
+                    branch 'main'
+                    }
+            }
+            steps{
+                sh "echo 'Deploying code for testing branch ${env.branch}'"
+                sh "git clone https://github.com/akash911133/MissionJobSwitch.git"
+                sh "cp -r /src/index.html /var/www/html/index.html"
+            }
+        }
+        stage('restart-nginx'){
+            steps{
+                sh "sudo nginx restart"
+            }
+        }
+    }
+}
