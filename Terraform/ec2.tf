@@ -44,9 +44,9 @@ resource "aws_security_group" "my-bastion-sg" {
 }
 
 resource "aws_instance" "my-bastion-instance" {
-  key_name = aws_key_pair.my-key.key_name
   ami = "ami-049442a6cf8319180"  // it varies region to region
   instance_type = "t2.micro"
+  key_name = aws_key_pair.my-key.key_name
   security_groups = [aws_security_group.my-bastion-sg.name]
 
   root_block_device {
