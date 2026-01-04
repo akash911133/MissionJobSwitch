@@ -1,0 +1,14 @@
+name: This is CI creating for practice
+
+on:
+  push:
+    branches: "*"
+
+jobs:
+  s3-push-workflow:
+    name: Print Hello World 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Want to print Hello World
+        run: echo "Hello World"
