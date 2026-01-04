@@ -44,7 +44,7 @@ resource "aws_security_group" "my-bastion-sg" {
 }
 
 resource "aws_instance" "my-bastion-instance" {
-  ami = "ami-049442a6cf8319180" 
+  ami = "ami-0ef0fafba270833fc" 
   instance_type = "t2.micro"
   key_name = aws_key_pair.my-key.key_name
   security_groups = [aws_security_group.my-bastion-sg.name]
