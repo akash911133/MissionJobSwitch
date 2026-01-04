@@ -45,13 +45,13 @@ resource "aws_security_group" "my-bastion-sg" {
 
 resource "aws_instance" "my-bastion-instance" {
   key_name = aws_key_pair.my-key.key_name
-  ami = ami-09c54d172e7aa3d9a  // it varies region to region
-  instance_type = t2.micro
+  ami = "ami-09c54d172e7aa3d9a"  // it varies region to region
+  instance_type = "t2.micro"
   security_groups = [aws_security_group.my-bastion-sg.name]
 
   root_block_device {
     volume_size = 15
-    volume_type = gp3
+    volume_type = "gp3"
   }
 
   tags = {
